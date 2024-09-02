@@ -1,0 +1,58 @@
+<component name="libraryTable">
+  <library name="javafx.base">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.base.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx-swt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.controls.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.fxml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.graphics.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.media.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.swing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib/javafx.web.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.." />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/PRJ_BU2_JAVA_002/src" />
+      <root url="file://$PROJECT_DIR$/PRJ_BU2_JAVA_003/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/Chapter/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/demojavafax/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/git文档阅读/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/java实验2/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/java实验一/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/上课笔记3.14/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/上课笔记3.19/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/上课笔记3.21/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/上课笔记3.26继承/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/上课笔记4.11/vsjava/extendd/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/上课笔记/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/二维数组/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业11-1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业13-1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业13-2/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业14-1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业6.1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业7-1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业8-1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业9-1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/作业9-2/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/创客抽奖/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/士兵/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/多态笔记/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/平均数作业/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/最近点/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/点坐标作业/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/生日" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/矩形类作业/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/练习6.1/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/VScode项目/自学/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/eclipes项目" />
+      <root url="file://$PROJECT_DIR$/../../java项目/eclipes项目/ERwei/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/eclipes项目/TestPoint/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/eclipes项目/Testgrap/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/eclipes项目/axa/src" />
+      <root url="file://$PROJECT_DIR$/../../java项目/eclipes项目/笔记/src" />
+    </SOURCES>
+  </library>
+</component>
