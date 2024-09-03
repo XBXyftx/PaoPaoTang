@@ -29,7 +29,14 @@ public class StarServiceImpl implements StarService {
 
 		StarList stars = new StarList();
 		/******************** PRJ-BU2-JAVA-003 ********************/
-
+		for(int i=0;i<StarService.MAX_ROW_SIZE;i++){
+			for(int j=0;j<StarService.MAX_COLUMN_SIZE;j++){
+				int random = (int)( (Math.random())*5);
+				stars.add(new Star(new Position(i, j),StarType.valueOf(random)));
+			}
+		}
+		
+		return stars;
 
 		
 		

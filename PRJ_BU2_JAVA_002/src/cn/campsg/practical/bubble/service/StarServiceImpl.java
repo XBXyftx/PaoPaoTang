@@ -31,13 +31,21 @@ public class StarServiceImpl implements StarService {
 //		Star star2 = new Star(new Position(1, 1),StarType.GREEN);
 //		System.out.println(star1.toString()+star2.toString());
 //		System.out.println(StarType.BLUE);
-		StarList sList = new StarList();
-		sList.add(new Star(new Position(0, 0),StarType.BLUE));
-		sList.add(new Star(new Position(1, 1),StarType.RED));
-		sList.add(new Star(new Position(2, 2),StarType.YELLOW));
-		sList.add(new Star(new Position(3, 3),StarType.GREEN));
-		sList.add(new Star(new Position(4, 4),StarType.PURPLE));
-		return sList;
+		
+//		sList.add(new Star(new Position(0, 0),StarType.BLUE));
+//		sList.add(new Star(new Position(1, 1),StarType.RED));
+//		sList.add(new Star(new Position(2, 2),StarType.YELLOW));
+//		sList.add(new Star(new Position(3, 3),StarType.GREEN));
+//		sList.add(new Star(new Position(4, 4),StarType.PURPLE));
+//		StarList sList = new StarList();
+//		for(int i=0;i<StarService.MAX_ROW_SIZE;i++){
+//			for(int j=0;j<StarService.MAX_COLUMN_SIZE;j++){
+//				int random = (int)( (Math.random())*5);
+//				sList.add(new Star(new Position(i, j),StarType.valueOf(random)));
+//			}
+//		}
+		
+//		return sList;
 	}
 
 	public StarList getYMovedStars(StarList clearStars,
