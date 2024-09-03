@@ -17,22 +17,6 @@ public class Star {
 		public int value() {
 			return value;
 		}
-		public static StarType valueOf(int value){
-			switch (value) {
-				case 0:
-					return StarType.BLUE;
-				case 1:
-					return StarType.GREEN;
-				case 2:
-					return StarType.YELLOW;
-				case 3:
-					return StarType.RED;
-				case 4:
-					return StarType.PURPLE;
-				default:
-					throw new AssertionError();
-			}
-		
 
 	}
 
@@ -67,7 +51,21 @@ public class Star {
 		return type;
 	}
 
-	
+	public static StarType valueOf(int value){
+		switch (value) {
+			case 0:
+				return StarType.BLUE;
+			case 1:
+				return StarType.GREEN;
+			case 2:
+				return StarType.YELLOW;
+			case 3:
+				return StarType.RED;
+			case 4:
+				return StarType.PURPLE;
+			default:
+				throw new AssertionError();
+		}
 	}
 
 }

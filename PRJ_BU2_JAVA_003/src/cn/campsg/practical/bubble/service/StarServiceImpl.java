@@ -36,7 +36,6 @@ public class StarServiceImpl implements StarService {
 			}
 		}
 		
-		return stars;
 
 		
 		
