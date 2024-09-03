@@ -1,5 +1,4 @@
 package cn.campsg.practical.bubble.entity;
-
 public class Star {
 	private Position position;
 	private StarType type;
@@ -19,6 +18,10 @@ public class Star {
 			return value;
 		}
 
+	}
+
+	public Star() {
+		this(new Position(), StarType.BLUE);
 	}
 
 	public Star(Position position,StarType type) {
