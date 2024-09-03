@@ -18,7 +18,7 @@ import cn.campsg.practical.bubble.entity.Star.StarType;
  *
  */
 public class StarServiceImpl implements StarService {
-
+	
 	/**
 	 * 锟斤拷锟斤拷锟斤拷幕锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷牵锟�10 * 10锟斤拷
 	 * 
@@ -26,10 +26,18 @@ public class StarServiceImpl implements StarService {
 	 */
 	@Override
 	public StarList createStars() {
-		Star star1 = new Star(new Position(0, 0),);
-		
-		
-		return null;
+//		Star star1 = new Star(new Position(0, 0));
+//		star1.setType(StarType.BLUE);
+//		Star star2 = new Star(new Position(1, 1),StarType.GREEN);
+//		System.out.println(star1.toString()+star2.toString());
+//		System.out.println(StarType.BLUE);
+		StarList sList = new StarList();
+		sList.add(new Star(new Position(0, 0),StarType.BLUE));
+		sList.add(new Star(new Position(1, 1),StarType.RED));
+		sList.add(new Star(new Position(2, 2),StarType.YELLOW));
+		sList.add(new Star(new Position(3, 3),StarType.GREEN));
+		sList.add(new Star(new Position(4, 4),StarType.PURPLE));
+		return sList;
 	}
 
 	public StarList getYMovedStars(StarList clearStars,

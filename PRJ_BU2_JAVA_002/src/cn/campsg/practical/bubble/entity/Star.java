@@ -3,7 +3,7 @@ public class Star {
 	private Position position;
 	private StarType type;
 
-	enum StarType {
+	public enum StarType {
 		BLUE(0),
 		GREEN(1),
 		YELLOW(2),
@@ -23,6 +23,10 @@ public class Star {
 	public Star() {
 		this(new Position(), StarType.BLUE);
 	}
+	
+	public Star(Position position) {
+		this(position, StarType.BLUE);
+	}
 
 	public Star(Position position,StarType type) {
 		// TODO Auto-generated constructor stub
@@ -36,15 +40,32 @@ public class Star {
 
 	}
 
-	public Object getPosition() {
-		return null;
+	public Position getPosition() {
+		return position;
 	}
 
 	public void setType(StarType type) {
 		this.type = type;
 	}
-	public Object getType() {
-		return null;
+	public StarType getType() {
+		return type;
+	}
+
+	public static StarType valueOf(int value){
+		switch (value) {
+			case 0:
+				return StarType.BLUE;
+			case 1:
+				return StarType.GREEN;
+			case 2:
+				return StarType.YELLOW;
+			case 3:
+				return StarType.RED;
+			case 4:
+				return StarType.PURPLE;
+			default:
+				throw new AssertionError();
+		}
 	}
 
 }
