@@ -1,18 +1,18 @@
 package cn.campsg.practical.bubble.entity;
 
 public class MovedStar extends Star {
-	private Position positionMoveTo;
+	private Position movedPosition;
 	public  MovedStar(Position position, StarType starType,Position positionMoveTo){
 		super(position,starType);
-		this.positionMoveTo=positionMoveTo;
+		this.movedPosition=positionMoveTo;
 	}
 	
-	public Position getPositionMoveTo() {
-		return positionMoveTo;
+	public Position getMovedPosition() {
+		return movedPosition;
 	}
 
-	public void setPositionMoveTo(Position positionMoveTo) {
-		this.positionMoveTo = positionMoveTo;
+	public void setMovedPosition(Position positionMoveTo) {
+		this.movedPosition = positionMoveTo;
 	}
 
 	public static void main (String[] args){
@@ -20,7 +20,7 @@ public class MovedStar extends Star {
 	}
 	@Override
 	public String toString() {
-		return super.toString()+"\n目标位置：("+positionMoveTo.getRow()+','+positionMoveTo.getColumn()+")";
+		return super.toString()+"\n目标位置：("+movedPosition.getRow()+','+movedPosition.getColumn()+")";
 	}
 	
 }
