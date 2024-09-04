@@ -6,6 +6,11 @@ import cn.campsg.practical.bubble.entity.Star.StarType;
 import cn.campsg.practical.bubble.entity.StarList;
 
 public class StarServiceTester implements StarService  {
+	
+	public static void main (String[] args){
+		StarServiceTester starServiceTester = new StarServiceTester();
+		System.out.println( starServiceTester.createStars().toString());
+	}
 
 	@Override
 	public StarList createStars() {
@@ -80,5 +85,6 @@ public class StarServiceTester implements StarService  {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
