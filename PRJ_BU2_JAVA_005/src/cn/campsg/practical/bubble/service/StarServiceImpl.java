@@ -166,7 +166,9 @@ public class StarServiceImpl implements StarService {
 
 	public StarList getYMovedStars(StarList clearStars,StarList currentStarList) {
 		/******************** PRJ-BU2-EL-005 Task2 ********************/
-		
+		StarList moveStars = new StarList();
+		Star star = currentStarList.lookup(6, 0);
+		MovedStar star = new MovedStar(star.getPosition(),star.getType(),new Position(7,0));
 		
 		
 		return null;
