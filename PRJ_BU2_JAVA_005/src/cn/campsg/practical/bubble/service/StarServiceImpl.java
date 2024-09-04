@@ -164,8 +164,7 @@ public class StarServiceImpl implements StarService {
 		return clearStars;
 	}
 
-	public StarList getYMovedStars(StarList clearStars,
-			StarList currentStarList) {
+	public StarList getYMovedStars(StarList clearStars,StarList currentStarList) {
 		/******************** PRJ-BU2-EL-005 Task2 ********************/
 		
 		

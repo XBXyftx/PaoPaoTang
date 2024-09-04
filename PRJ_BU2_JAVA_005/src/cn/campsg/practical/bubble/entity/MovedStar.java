@@ -20,7 +20,7 @@ public class MovedStar extends Star {
 	}
 	@Override
 	public String toString() {
-		return "原位置：("+super.getPosition().getRow()+","+super.getPosition().getColumn()+")"+'\n'+"目标位置：("+positionMoveTo.getRow()+','+positionMoveTo.getColumn()+")"+'\n'+super.getType();
+		return super.toString()+"\n目标位置：("+positionMoveTo.getRow()+','+positionMoveTo.getColumn()+")";
 	}
 	
 }
