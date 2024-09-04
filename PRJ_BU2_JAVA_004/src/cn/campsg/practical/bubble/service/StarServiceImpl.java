@@ -29,21 +29,14 @@ public class StarServiceImpl implements StarService {
 	public StarList createStars() {
 
 		StarList stars = new StarList();
-		for (int row = 0; row < StarService.MAX_ROW_SIZE; row++) {
-			for (int col = 0; col < StarService.MAX_COLUMN_SIZE; col++) {
-				Star star = new Star();
-				// 设置泡泡糖在画面上的位置
-				star.setPosition(new Position(row, col));
-				// 产生随机的泡泡糖
-				if(row>=3&&row<=6 && col>=3&&col<=6){
-					star.setType(StarType.RED);
-				}else{
-					star.setType(StarType.YELLOW);
-				}
-				// 加入列表
-				stars.add(star);
+		/******************** PRJ-BU2-JAVA-003 ********************/
+		for(int i=0;i<StarService.MAX_ROW_SIZE;i++){
+			for(int j=0;j<StarService.MAX_COLUMN_SIZE;j++){
+				int random = (int)( (Math.random())*5);
+				stars.add(new Star(new Position(i, j),StarType.valueOf(random)));
 			}
 		}
+		/**************************************************************/
 		return stars;
 	}
 	
@@ -61,60 +54,73 @@ public class StarServiceImpl implements StarService {
 		/******************** PRJ-BU2-JAVA-004 Task2 ********************/
 		int baseRow = base.getPosition().getRow();
 		int baseColumn = base.getPosition().getColumn();
-		if(baseColumn>0){
-			if(sList.lookup(baseRow, baseColumn-1).getType()==base.getType()){
-				clearStars.add(StarsUtil.clone(sList.lookup(baseRow, baseColumn-1)));
-				baseColumn--;
+		if(baseColumn>0){//向左
+			if(sList.lookup(baseRow, baseColumn-1)!=null){
+				
+				if(!clearStars.existed(sList.lookup(baseRow, baseColumn-1))){
+					
+					if(sList.lookup(baseRow, baseColumn-1).getType()==base.getType()){
+						
+						clearStars.add(StarsUtil.clone(sList.lookup(baseRow, baseColumn-1)));
+						
+						lookupByPath(sList.lookup(baseRow, baseColumn-1),sList,clearStars);
+					}
+				}
 			}
-			
 		}
-
-		
-		
-		
-		
-		
-		
-		
-		
 		/**************************************************************/
 
 		/******************** PRJ-BU2-JAVA-004 Task3 ********************/
-
-
-		
-		
-		
-		
-		
-		
-		
-		
+		if(baseColumn<10){//向右
+			if(sList.lookup(baseRow, baseColumn+1)!=null){
+				
+				if(!clearStars.existed(sList.lookup(baseRow, baseColumn+1))){
+					
+					if(sList.lookup(baseRow, baseColumn+1).getType()==base.getType()){
+						
+						clearStars.add(StarsUtil.clone(sList.lookup(baseRow, baseColumn+1)));
+						
+						lookupByPath(sList.lookup(baseRow, baseColumn+1),sList,clearStars);
+					}
+				}
+			}
+		}
+	
 		/**************************************************************/
 
 		/******************** PRJ-BU2-JAVA-004 Task4 ********************/
+		if(baseRow>0){//向上
+			if(sList.lookup(baseRow-1, baseColumn)!=null){
+				
+				if(!clearStars.existed(sList.lookup(baseRow-1, baseColumn))){
+					
+					if(sList.lookup(baseRow-1, baseColumn).getType()==base.getType()){
+						
+						clearStars.add(StarsUtil.clone(sList.lookup(baseRow-1, baseColumn)));
+						
+						lookupByPath(sList.lookup(baseRow-1, baseColumn),sList,clearStars);
+					}
+				}
+			}
+		}
 
-
-		
-		
-		
-		
-		
-		
-		
-		
 		/**************************************************************/
 
 		/******************** PRJ-BU2-JAVA-004 Task5 ********************/
-
-
-		
-		
-		
-		
-		
-		
-		
+		if(baseRow<10){//向下
+			if(sList.lookup(baseRow+1, baseColumn)!=null){
+				
+				if(!clearStars.existed(sList.lookup(baseRow+1, baseColumn))){
+					
+					if(sList.lookup(baseRow+1, baseColumn).getType()==base.getType()){
+						
+						clearStars.add(StarsUtil.clone(sList.lookup(baseRow+1, baseColumn)));
+						
+						lookupByPath(sList.lookup(baseRow+1, baseColumn),sList,clearStars);
+					}
+				}
+			}
+		}
 		
 		/**************************************************************/
 
@@ -133,16 +139,13 @@ public class StarServiceImpl implements StarService {
 	@Override
 	public StarList tobeClearedStars(Star base, StarList mCurrent) {
 		/******************** PRJ-BU2-JAVA-004 Task2 ********************/
-
-
-		
-		
-		
-		
-		
-		
-		
-		return null;
+		StarList clearStars = new StarList();
+		clearStars.add(base);
+		lookupByPath(base,mCurrent,clearStars);
+		if(clearStars.size()==1){
+			clearStars.clear();
+		}
+		return clearStars;
 		/**************************************************************/
 	}
 
