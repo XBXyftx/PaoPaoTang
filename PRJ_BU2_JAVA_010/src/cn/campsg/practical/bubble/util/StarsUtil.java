@@ -50,7 +50,13 @@ public class StarsUtil {
 	 *            µÚN+1¸öÅÝÅÝÌÇ
 	 */
 	/************ PRJ-BU2-JAVA-010 Task1 ¡¾1/3 start¡¿***************/
-
+	static void swap(Star star1,Star star2){
+		Star star = new Star(new Position(star1.getPosition().getRow(),star1.getPosition().getColumn()),star1.getType());
+		star1.setPosition(new Position(star2.getPosition().getRow(),star2.getPosition().getColumn()));
+		star1.setType(star2.getType());
+		star2.setPosition(new Position(star.getPosition().getRow(),star.getPosition().getColumn()));
+		star2.setType(star.getType());
+	}
 
 	
 	
