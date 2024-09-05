@@ -87,16 +87,11 @@ public class StarServiceImpl implements StarService {
 		int bottomStarRow = clearStars.get(clearStars.size()-1).getPosition().getRow();//消除数组最下面的糖对象的行值
 		for(int i = bottomStarRow;i >= 0;i--){
 			Star star = currentStarList.lookup(i, 0);
-			if(currentStarList.lookup(i-1, 0)==null&&star.getPosition().getRow()==0){
-				if(starsWaitToMove.existed(star)){
-					rowMove++;
-					starsWaitToMove.add(star);
-				}else{
-					starsWaitToMove.add(star);
-				}
+			if(currentStarList.lookup(i-1, 0)==null&&star.getPosition().getRow()==0){//判断是否到顶							
+				starsWaitToMove.add(star);//最上方的最后一次操作
 				break;
-			}else{
-				if(starsWaitToMove.existed(star)){
+			}else{//未到顶的一般情况
+				if(starsWaitToMove.existed(star)){//如果是待消除则增加一个纵向移动值
 					rowMove++;
 					starsWaitToMove.add(star);
 				}else{
