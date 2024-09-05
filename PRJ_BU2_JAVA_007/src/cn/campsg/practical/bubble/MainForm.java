@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import cn.campsg.practical.bubble.common.StarFormUtils;
 import cn.campsg.practical.bubble.entity.Star;
 import cn.campsg.practical.bubble.entity.StarList;
 import cn.campsg.practical.bubble.service.StarService;
+import cn.campsg.practical.bubble.service.StarServiceImpl;
 
 /**
  * 泡泡糖窗体类，用于显示泡泡糖阵列、处理泡泡糖点击事件与动画
@@ -58,6 +60,8 @@ public class MainForm extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 
 	}
 	
@@ -122,16 +126,37 @@ public class MainForm extends Application {
 			}
 			
 			/******************** PRJ-BU2-JAVA-007 Task1 ********************/
+			class StartEventHandler implements EventHandler{
+				StarService starService;
+				public StartEventHandler(){
+					
+				}
+				public StartEventHandler(StarService starService){
+					this.starService=starService;
+				}
+				@Override
+				public void handle(Event event) {
+					Label starFrame = (Label) event.getTarget();
+					Star base = StarFormUtils.convert(starFrame);
+//					System.out.println(base.toString());
+					StarList starList = starService.tobeClearedStars(base, mCurretStars);
+					if(starList.size()==0||starList==null){
+						
+					}else{
+						for(int i=0;i<starList.size();i++){	
+							Label frame = StarFormUtils.findFrame(starList.get(i), mStarForm);
+							StarAnimation.clearStarLable(mStarForm, frame);
+							starList.setNull(starList.get(i).getPosition().getRow(), starList.get(i).getPosition().getColumn());
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+				starFrame.setOnMouseClicked(new StartEventHandler (new StarServiceImpl()));
 
-
-			
-			
-			
-			
-			
-			
-			
-			
 			/******************************************************/
 			
 			// 将泡泡糖加入到窗体中显示泡泡糖的区域
