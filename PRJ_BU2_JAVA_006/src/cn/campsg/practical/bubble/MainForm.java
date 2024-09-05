@@ -77,9 +77,9 @@ public class MainForm extends Application {
 
 		
 		/** 环境包: 不提供，指导手册要求学员完成 **/
-        //StarService starService = new     StarServiceImpl();
+        StarService starService = new  StarServiceImpl();
 		//任务03完成以下代码
-		 StarService starService = getStarService();
+//		 StarService starService = getStarService();
 
 		// 创建调用创建泡泡糖代码
 		/** 环境包: 不提供，指导手册要求学员完成 **/
