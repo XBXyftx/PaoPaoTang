@@ -3,13 +3,15 @@ package cn.campsg.practical.bubble.util;
 import cn.campsg.practical.bubble.entity.MovedStar;
 import cn.campsg.practical.bubble.entity.Position;
 import cn.campsg.practical.bubble.entity.Star;
+import cn.campsg.practical.bubble.entity.Star.StarType;
+import cn.campsg.practical.bubble.entity.StarList;
 
 /**
- * ÅİÅİÌÇ/´ıÒÆ¶¯ÅİÅİÌÇÊµÌåÀà¹¤¾ßÀà£¬Ìá¹©ÒÔÏÂ¹¦ÄÜ£º<br>
+ * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·/é”Ÿæ–¤æ‹·é”Ÿç‹¡è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å®é”Ÿæ–¤æ‹·é”Ÿæ´å·¥é”Ÿæ–¤æ‹·é”Ÿæ´ï¼Œé”Ÿç»“ä¾›é”Ÿæ–¤æ‹·é”Ÿé“°ç™¸æ‹·é”Ÿæ°ï½æ‹·<br>
  * <ul>
- * <li>1. ÅÅĞòÖ¸¶¨ÁĞ±íÖĞµÄÅİÅİÌÇ-°´ÁĞÉıĞòÅÅĞò£¬ÁĞÏàÍ¬°´ĞĞÉıĞòÅÅĞò£¨Ã°ÅİÅÅĞòËã·¨£©¡£</li>
- * <li>2. ¶ÔÖ¸¶¨ÁĞ±íÖĞµÄÅİÅİÌÇ°´ĞĞ·Ö×é¡£</li>
- * <li>3. ¿ËÂ¡Ò»¸öÅİÅİÌÇ¶ÔÏó</li>
+ * <li>1. é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æŒ‡é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·-é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å†’é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå§æ³•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·</li>
+ * <li>2. é”Ÿæ–¤æ‹·æŒ‡é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’å¸®æ‹·é”Ÿå«å‡¤æ‹·é”Ÿä»‹ã€‚</li>
+ * <li>3. é”Ÿæ–¤æ‹·éš†ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’è®¹æ‹·é”Ÿæ–¤æ‹·</li>
  * </ul>
  * 
  * @see cn.campsg.practical.bubble.entity.Star
@@ -23,15 +25,23 @@ import cn.campsg.practical.bubble.entity.Star;
 public class StarsUtil {
 	
 	/**
-	 * ÅÅĞòÖ¸¶¨ÁĞ±íÖĞµÄÅİÅİÌÇ<br>
-	 * ÅÅĞò¹æÔò£º°´ÁĞÉıĞòÅÅĞò£¬Èç¹ûÁĞÏàÍ¬°´ĞĞÉıĞòÅÅĞò<br>
-	 * ÅÅĞòËã·¨£ºÃ°ÅİÅÅĞò
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æŒ‡é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·<br>
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é¢å–Šé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·<br>
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå§æ³•é”Ÿæ–¤æ‹·å†’é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * 
 	 * @param starList
-	 *            ´ıÅÅĞòµÄÅİÅİÌÇÁĞ±í
+	 *            é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ–œé”Ÿï¿½
 	 */
-	/************ PRJ-BU2-JAVA-010 Task2 ¡¾2/3 start¡¿***************/
-
+	/************ PRJ-BU2-JAVA-010 Task2 é”Ÿæ–¤æ‹·2/3 starté”Ÿæ–¤æ‹·***************/
+	public static void sort(StarList starList){
+		for(int i=0;i<starList.size()-1;i++){
+			for(int j=0;j<starList.size()-i-1;j++){
+				if(starList.get(j).getPosition().getRow()>starList.get(j+1).getPosition().getRow()){
+					swap(starList.get(j), starList.get(j + 1));
+				}
+ 			}
+		}
+	}
 	
 	
 	
@@ -39,18 +49,18 @@ public class StarsUtil {
 	
 	
 	
-	/************ PRJ-BU2-JAVA-010 Task2 ¡¾2/3 end¡¿*****************/
+	/************ PRJ-BU2-JAVA-010 Task2 é”Ÿæ–¤æ‹·2/3 endé”Ÿæ–¤æ‹·*****************/
 	
 	/**
-	 * ½»»»Á½¸öÅİÅİÌÇÔÚÁĞ±íÖĞµÄÎ»ÖÃ
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·ä½é”Ÿæ–¤æ‹·
 	 * 
 	 * @param preStar
-	 *            µÚN¸öÅİÅİÌÇ
+	 *            é”Ÿæ–¤æ‹·Né”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * @param nextStar
-	 *            µÚN+1¸öÅİÅİÌÇ
+	 *            é”Ÿæ–¤æ‹·N+1é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 */
-	/************ PRJ-BU2-JAVA-010 Task1 ¡¾1/3 start¡¿***************/
-	static void swap(Star star1,Star star2){
+	/************ PRJ-BU2-JAVA-010 Task1 é”Ÿæ–¤æ‹·1/3 starté”Ÿæ–¤æ‹·***************/
+	public static void swap(Star star1,Star star2){
 		Star star = new Star(new Position(star1.getPosition().getRow(),star1.getPosition().getColumn()),star1.getType());
 		star1.setPosition(new Position(star2.getPosition().getRow(),star2.getPosition().getColumn()));
 		star1.setType(star2.getType());
@@ -58,21 +68,35 @@ public class StarsUtil {
 		star2.setType(star.getType());
 	}
 
+	public static void main (String[] args){
+		Star star1=new Star(new Position(0,0),StarType.BLUE);
+		Star star2 = new Star(new Position(1,1),StarType.GREEN);
+		swap(star1,star2);
+		System.out.println(star1.toString()+star2.toString());
+		
+		StarList starList = new StarList();
+		starList.add(new Star(new Position(2,0),StarType.BLUE));
+		starList.add(new Star(new Position(5,0),StarType.GREEN));
+		starList.add(new Star(new Position(9,0),StarType.BLUE));
+		starList.add(new Star(new Position(3,0),StarType.BLUE));
+		starList.add(new Star(new Position(8,0),StarType.BLUE));
+		sort(starList);
+		System.out.println(starList.toString());
+	}
 	
 	
 	
 	
 	
 	
-	
-	/************ PRJ-BU2-JAVA-010 Task1 ¡¾1/3 end¡¿*****************/
+	/************ PRJ-BU2-JAVA-010 Task1 é”Ÿæ–¤æ‹·1/3 endé”Ÿæ–¤æ‹·*****************/
 
 	/**
-	 * ¿ËÂ¡Ò»¸öĞÂµÄÅİÅİÌÇ¡£
+	 * é”Ÿæ–¤æ‹·éš†ä¸€é”Ÿæ–¤æ‹·é”Ÿé“°ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’â˜…æ‹·
 	 * 
 	 * @param star
-	 *            ´ı¿ËÂ¡µÄÅİÅİÌÇ
-	 * @return ĞÂµÄÅİÅİÌÇ£¨¶ÀÁ¢ÄÚ´æµØÖ·µÄÅİÅİÌÇ£©¡£
+	 *            é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·éš†é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @return é”Ÿé“°ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ï½æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”ŸèŠ‚è¾¾æ‹·é”Ÿè¡—å‡¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ç‰µé”Ÿæ–¤æ‹·é”Ÿï¿½
 	 */
 	public static Star copy(Star star) {
 

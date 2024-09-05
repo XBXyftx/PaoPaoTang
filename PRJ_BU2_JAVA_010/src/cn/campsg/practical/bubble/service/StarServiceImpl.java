@@ -80,10 +80,31 @@ public class StarServiceImpl implements StarService {
 	public StarList getYMovedStars(StarList clearStars,
 			StarList currentStarList) {
 		/************ PRJ-BU2-JAVA-010 Task3 【3/3 start】***************/
-		
-		
-		
-		return null;
+		StarList starsWaitToMove = new StarList();//待移动糖列表
+		int col = 0;
+		int rowMove = 0;//纵向移动量
+		StarsUtil.sort(clearStars);
+		int bottomStarRow = clearStars.get(clearStars.size()-1).getPosition().getRow();//消除数组最下面的糖对象的行值
+		for(int i = bottomStarRow;i >= 0;i--){
+			Star star = currentStarList.lookup(i, 0);
+			if(currentStarList.lookup(i-1, 0)==null&&star.getPosition().getRow()==0){
+				if(starsWaitToMove.existed(star)){
+					rowMove++;
+					starsWaitToMove.add(star);
+				}else{
+					starsWaitToMove.add(star);
+				}
+				break;
+			}else{
+				if(starsWaitToMove.existed(star)){
+					rowMove++;
+					starsWaitToMove.add(star);
+				}else{
+					starsWaitToMove.add(star);
+				}
+			}
+		}
+		return starsWaitToMove;
 		/************ PRJ-BU2-JAVA-010 Task3 【3/3 end】*****************/
 	}
 
