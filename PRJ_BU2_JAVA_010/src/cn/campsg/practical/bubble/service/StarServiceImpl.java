@@ -87,18 +87,30 @@ public class StarServiceImpl implements StarService {
 		int bottomStarRow = clearStars.get(clearStars.size()-1).getPosition().getRow();//消除数组最下面的糖对象的行值
 		for(int i = bottomStarRow;i >= 0;i--){
 			Star star = currentStarList.lookup(i, 0);
-			if(currentStarList.lookup(i-1, 0)==null&&star.getPosition().getRow()==0){//判断是否到顶							
-				starsWaitToMove.add(star);//最上方的最后一次操作
+			if(currentStarList.lookup(i-1, 0)==null||star.getPosition().getRow()==0){//判断是否到顶	
+				if(clearStars.existed(star)){
+					
+				}else{
+					MovedStar movedStar = new MovedStar(star.getPosition(),star.getType(),new Position(star.getPosition().getRow()+rowMove,star.getPosition().getColumn()));
+					starsWaitToMove.add(movedStar );
+				}
+				
 				break;
 			}else{//未到顶的一般情况
-				if(starsWaitToMove.existed(star)){//如果是待消除则增加一个纵向移动值
+				if(clearStars.existed(star)){//如果是待消除则增加一个纵向移动值
 					rowMove++;
-					starsWaitToMove.add(star);
 				}else{
-					starsWaitToMove.add(star);
+					MovedStar movedStar = new MovedStar(star.getPosition(),star.getType(),new Position(star.getPosition().getRow()+rowMove,star.getPosition().getColumn()));
+					starsWaitToMove.add(movedStar );
 				}
 			}
 		}
+//		StarList starMoved = new StarList();
+//		for(int i=0;i<starsWaitToMove.size();i++){
+//			MovedStar movedStar = new MovedStar(new Position(starsWaitToMove.get(i).getPosition().getRow(),starsWaitToMove.get(i).getPosition().getColumn()),starsWaitToMove.get(i).getType(),new Position(starsWaitToMove.get(i).getPosition().getRow()+rowMove,starsWaitToMove.get(i).getPosition().getColumn()));
+//			starMoved.add(movedStar);
+//		}
+		
 		return starsWaitToMove;
 		/************ PRJ-BU2-JAVA-010 Task3 【3/3 end】*****************/
 	}
