@@ -279,7 +279,7 @@ public class StarServiceImpl implements StarService {
 	/*****************PRJ-BU2-JAVA-012 Task3 ¡¾3/3 Start ¡¿*****************/
 	public StarList getYMovedStars(StarList clearStars,StarList currentStarList) {
 		StarList starsWaitToMove = new StarList();//´ýÒÆ¶¯ÌÇÁÐ±í
-		Set<Integer> keys = StarsUtil.group(clearStars).keySet();
+//		Set<Integer> keys = StarsUtil.group(clearStars).keySet();
 		Iterator<Integer> iterator = StarsUtil.group(clearStars).keySet().iterator();
 		while(iterator.hasNext()){
 			int col = iterator.next();
