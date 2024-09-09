@@ -1,16 +1,23 @@
 package cn.campsg.practical.bubble.util;
 
+import java.util.HashMap;
+
+
+
+import java.util.Map;
+
 import cn.campsg.practical.bubble.entity.MovedStar;
 import cn.campsg.practical.bubble.entity.Position;
 import cn.campsg.practical.bubble.entity.Star;
+import cn.campsg.practical.bubble.entity.Star.StarType;
 import cn.campsg.practical.bubble.entity.StarList;
 
 /**
- * ÅİÅİÌÇ/´ıÒÆ¶¯ÅİÅİÌÇÊµÌåÀà¹¤¾ßÀà£¬Ìá¹©ÒÔÏÂ¹¦ÄÜ£º<br>
+ * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·/é”Ÿæ–¤æ‹·é”Ÿç‹¡è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å®é”Ÿæ–¤æ‹·é”Ÿæ´å·¥é”Ÿæ–¤æ‹·é”Ÿæ´ï¼Œé”Ÿç»“ä¾›é”Ÿæ–¤æ‹·é”Ÿé“°ç™¸æ‹·é”Ÿæ°ï½æ‹·<br>
  * <ul>
- * <li>1. ÅÅĞòÖ¸¶¨ÁĞ±íÖĞµÄÅİÅİÌÇ-°´ÁĞÉıĞòÅÅĞò£¬ÁĞÏàÍ¬°´ĞĞÉıĞòÅÅĞò£¨Ã°ÅİÅÅĞòËã·¨£©¡£</li>
- * <li>2. ¶ÔÖ¸¶¨ÁĞ±íÖĞµÄÅİÅİÌÇ°´ĞĞ·Ö×é¡£</li>
- * <li>3. ¿ËÂ¡Ò»¸öÅİÅİÌÇ¶ÔÏó</li>
+ * <li>1. é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æŒ‡é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·-é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å†’é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå§æ³•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·</li>
+ * <li>2. é”Ÿæ–¤æ‹·æŒ‡é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’å¸®æ‹·é”Ÿå«å‡¤æ‹·é”Ÿä»‹ã€‚</li>
+ * <li>3. é”Ÿæ–¤æ‹·éš†ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’è®¹æ‹·é”Ÿæ–¤æ‹·</li>
  * </ul>
  * 
  * @see cn.campsg.practical.bubble.entity.Star
@@ -24,89 +31,113 @@ import cn.campsg.practical.bubble.entity.StarList;
 public class StarsUtil {
 
 	/**
-	 * ÅÅĞòÖ¸¶¨ÁĞ±íÖĞµÄÅİÅİÌÇ<br>
-	 * ÅÅĞò¹æÔò£º°´ÁĞÉıĞòÅÅĞò£¬Èç¹ûÁĞÏàÍ¬°´ĞĞÉıĞòÅÅĞò<br>
-	 * ÅÅĞòËã·¨£ºÃ°ÅİÅÅĞò
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æŒ‡é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·é”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·<br>
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é¢å–Šé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·<br>
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå§æ³•é”Ÿæ–¤æ‹·å†’é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * 
 	 * @param starList
-	 *            ´ıÅÅĞòµÄÅİÅİÌÇÁĞ±í
+	 *            é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ–œé”Ÿï¿½
 	 */
 	public static void sort(StarList starList) {
-		/*****PRJ-BU2-JAVA-012 Task1 ¡¾1/3 Start¡¿*******/
+		/*****PRJ-BU2-JAVA-012 Task1 é”Ÿæ–¤æ‹·1/3 Starté”Ÿæ–¤æ‹·*******/
 		for (int i = 0; i < starList.size() - 1; i++) {
 			for (int j = 0; j < starList.size() - i - 1; j++) {
-				// »ñÈ¡µÚN¸öÅİÅİÌÇ
+				// é”Ÿæ–¤æ‹·å–é”Ÿæ–¤æ‹·Né”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 				Star preStar = starList.get(j);
-				// »ñÈ¡µÚN¸öÅİÅİÌÇµÄºóÒ»¸öÅİÅİÌÇ£¨N+1£©
+				// é”Ÿæ–¤æ‹·å–é”Ÿæ–¤æ‹·Né”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’çš„çŒ´æ‹·ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ï½æ‹·N+1é”Ÿæ–¤æ‹·
 				Star nextStar = starList.get(j + 1);
 
-				if (preStar.getPosition().getRow() > nextStar.getPosition()
-						.getRow()) {
+				if (preStar.getPosition().getColumn() > nextStar.getPosition().getColumn()) {
+					swap(preStar, nextStar);
+					continue;
+				}
+				if(preStar.getPosition().getColumn()==nextStar.getPosition().getColumn()&&preStar.getPosition().getRow() > nextStar.getPosition().getRow()){
 					swap(preStar, nextStar);
 				}
 			}
 		}
-		/*****PRJ-BU2-JAVA-012 Task1 ¡¾1/3 End¡¿********/
+		/*****PRJ-BU2-JAVA-012 Task1 é”Ÿæ–¤æ‹·1/3 Endé”Ÿæ–¤æ‹·********/
+	}
+
+	public static void main(String[] args) {
+		StarList starList = new StarList();
+		starList.add(new Star(new Position(2, 3), StarType.BLUE));
+		starList.add(new Star(new Position(1, 5), StarType.BLUE));
+		starList.add(new Star(new Position(0, 9), StarType.BLUE));
+		starList.add(new Star(new Position(0, 8), StarType.BLUE));
+		starList.add(new Star(new Position(0, 3), StarType.BLUE));
+//		System.out.println(starList);
+//		sort(starList);
+//		System.out.println(starList);
+		System.out.println(group(starList));
 	}
 
 
 	/**
-	 * °´ÉıĞò¹æÔò½»»»Á½¸öÅİÅİÌÇÔÚÁĞ±íÖĞµÄÖ»
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·èšªæ¢é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ–œé”Ÿæ–¤æ‹·æ¢°é”Ÿè¡—ï¿½
 	 * 
 	 * @param preStar
-	 *            µÚN¸öÅİÅİÌÇ
+	 *            é”Ÿæ–¤æ‹·Né”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * @param nextStar
-	 *            µÚN+1¸öÅİÅİÌÇ
+	 *            é”Ÿæ–¤æ‹·N+1é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 */
 	private static void swap(Star preStar, Star nextStar) {
-		// ´´½¨ÁÙÊ±½»»»ÅİÅİÌÇ¶ÔÏó
+		// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’è®¹æ‹·é”Ÿæ–¤æ‹·
 		Star tempStar = new Star();
 
-		// ½«µÚN¸öÅİÅİÌÇµÄÊı¾İ±£´æÈëÁÙÊ±½»»»ÅİÅİÌÇ¶ÔÏó
+		// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·Né”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ·æ†‹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’è®¹æ‹·é”Ÿæ–¤æ‹·
 		tempStar.getPosition().setRow(preStar.getPosition().getRow());
 		tempStar.getPosition().setColumn(preStar.getPosition().getColumn());
 		tempStar.setType(preStar.getType());
 
-		// ½«µÚN+1¸öÅİÅİÌÇµÄÊı¾İ±£´æÈëµÚN¸öÅİÅİÌÇ
+		// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·N+1é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ·æ†‹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿçµ…é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 		preStar.getPosition().setRow(nextStar.getPosition().getRow());
 		preStar.getPosition().setColumn(nextStar.getPosition().getColumn());
 		preStar.setType(nextStar.getType());
 
-		// ½«ÁÙÊ±½»»»ÅİÅİÌÇ¶ÔÏóµÄÊı¾İ±£´æÈëµÚN+1¸öÅİÅİÌÇ
+		// é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ—¶é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·è¼é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·N+1é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 		nextStar.getPosition().setRow(tempStar.getPosition().getRow());
 		nextStar.getPosition().setColumn(tempStar.getPosition().getColumn());
 		nextStar.setType(tempStar.getType());
 	}
 
 	/**
-	 * °´ÁĞºÅ¶ÔÅİÅİÌÇ¼¯ºÏÖĞÅİÅİÌÇ½øĞĞ·Ö×é£¨ÏàÍ¬ÁĞºÅµÄÅİÅİÌÇ·ÖÔÚÒ»¸ö×é±ğÖĞ£©<br>
-	 * ·Ö×éÇ°Ó¦¸ÃÏÈ¶ÔÅİÅİÌÇ¼¯ºÏ½øĞĞÅÅĞò¡£
+	 * é”Ÿæ–¤æ‹·é”Ÿå«å·è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ç¡·æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’æ–¤æ‹·é”Ÿå«å‡¤æ‹·é”Ÿä»‹ï¼ˆé”Ÿæ–¤æ‹·åŒé”Ÿå«å·ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’å‡¤æ‹·é”Ÿæ–¤æ‹·ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ ¡é”Ÿï¿½<br>
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å‰åº”é”Ÿæ–¤æ‹·é”Ÿé¥ºè®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ç¡·æ‹·é”Ÿè¾ƒæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * 
 	 * @see sort
 	 * 
 	 * @param mStarList
-	 *            ´ı·Ö×éµÄÅİÅİÌÇÁĞ±í
+	 *            é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ–œé”Ÿï¿½
 	 * @return 
-	 *         ·Ö×é½á¹û£¬MapÖĞµÄkeyÊÇÁĞºÅ£¬valueÊÇÏàÍ¬ÁĞµÄÅİÅİÌÇ¼¯ºÏ£¬ÀıÈç£º1-{(1,2);(1,3);(1,4)}£»2-{(2,2)
+	 *         é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·Mapé”Ÿå«ç¢‰æ‹·keyé”Ÿæ–¤æ‹·é”Ÿå«å·ï½æ‹·valueé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·åŒé”Ÿå«ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ç¡·æ‹·é”Ÿè¾ƒï½æ‹·é”Ÿæ–¤æ‹·é”Ÿç•Œï¼š1-{(1,2);(1,3);(1,4)}é”Ÿæ–¤æ‹·2-{(2,2)
 	 *         ;(2,3);(2,4)}
 	 */
-	/*****PRJ-BU2-JAVA-012 Task2 ¡¾2/3 Start¡¿*******/
-
-
+	/*****PRJ-BU2-JAVA-012 Task2 é”Ÿæ–¤æ‹·2/3 Starté”Ÿæ–¤æ‹·*******/
+	public static HashMap<Integer,StarList> group(StarList sL) {
+		HashMap<Integer,StarList> map =new HashMap<Integer,StarList>();
+		sort(sL);
+		for (int i = 0; i < sL.size(); i++) {
+			Star star = sL.get(i);
+			if(map.containsKey(star.getPosition().getColumn())){
+				map.get(star.getPosition().getColumn()).add(star);//ç”¨åˆ—å€¼ä½œä¸ºKeyï¼Œgetæ–¹æ³•æ˜¯æŒ‰ç…§Keyå€¼æ¥è¿›è¡Œæœç´¢ï¼Œè·å–åˆ°å¯¹åº”åˆ—å€¼çš„StarList
+			}else{
+				StarList list = new StarList();
+				list.add(star);
+				map.put(star.getPosition().getColumn(), list);//è‹¥å½“å‰åˆ—å€¼Keyæ²¡æœ‰å¯¹åº”çš„StarListæ¥å­˜å€¼åˆ™æ–°å»ºä¸€ä¸ªStarListæ¥å‚¨å­˜	
+			}
+		}
+		return map;
+	}
 	
-	
-	
-	
-	
-	
-	/*****PRJ-BU2-JAVA-012 Task2 ¡¾2/3 End¡¿*********/
+	/*****PRJ-BU2-JAVA-012 Task2 é”Ÿæ–¤æ‹·2/3 Endé”Ÿæ–¤æ‹·*********/
 
 	/**
-	 * ¿ËÂ¡Ò»¸öĞÂµÄÅİÅİÌÇ¡£
+	 * é”Ÿæ–¤æ‹·éš†ä¸€é”Ÿæ–¤æ‹·é”Ÿé“°ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’â˜…æ‹·
 	 * 
 	 * @param star
-	 *            ´ı¿ËÂ¡µÄÅİÅİÌÇ
-	 * @return ĞÂµÄÅİÅİÌÇ£¨¶ÀÁ¢ÄÚ´æµØÖ·µÄÅİÅİÌÇ£©¡£
+	 *            é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·éš†é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @return é”Ÿé“°ç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè§’ï½æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”ŸèŠ‚è¾¾æ‹·é”Ÿè¡—å‡¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ç‰µé”Ÿæ–¤æ‹·é”Ÿï¿½
 	 */
 	public static Star clone(Star star) {
 

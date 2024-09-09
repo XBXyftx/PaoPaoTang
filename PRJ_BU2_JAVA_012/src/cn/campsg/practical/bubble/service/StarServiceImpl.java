@@ -1,7 +1,11 @@
 package cn.campsg.practical.bubble.service;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 
+import cn.campsg.practical.bubble.entity.MovedStar;
 import cn.campsg.practical.bubble.entity.Position;
 import cn.campsg.practical.bubble.entity.Star;
 import cn.campsg.practical.bubble.entity.Star.StarType;
@@ -273,14 +277,42 @@ public class StarServiceImpl implements StarService {
 	 * @return 待移动泡泡糖列表
 	 */
 	/*****************PRJ-BU2-JAVA-012 Task3 【3/3 Start 】*****************/
-	public StarList getYMovedStars(StarList clearStars,
-			StarList currentStarList) {
-
-
-
+	public StarList getYMovedStars(StarList clearStars,StarList currentStarList) {
+		StarList starsWaitToMove = new StarList();//待移动糖列表
+		Set<Integer> keys = StarsUtil.group(clearStars).keySet();
+		Iterator<Integer> iterator = StarsUtil.group(clearStars).keySet().iterator();
+		while(iterator.hasNext()){
+			int col = iterator.next();
+			int rowMove = 0;//纵向移动量
+//			StarsUtil.sort(clearStars);
+			StarsUtil.group(clearStars);
+			int bottomStarRow = clearStars.get(clearStars.size()-1).getPosition().getRow();//消除数组最下面的糖对象的行值
+		
+			for(int i = bottomStarRow;i >= 0;i--){
+				Star star = currentStarList.lookup(i, col);
+				if(currentStarList.lookup(i-1, col)==null||star.getPosition().getRow()==0){//判断是否到顶	
+					if(clearStars.existed(star)){
+					
+					}else{//到顶的最后一次操作
+						MovedStar movedStar = new MovedStar(star.getPosition(),star.getType(),new Position(star.getPosition().getRow()+rowMove,star.getPosition().getColumn()));
+						starsWaitToMove.add(movedStar );
+					}
+					break;
+				}else{//未到顶的一般情况
+					if(clearStars.existed(star)){//如果是待消除则增加一个纵向移动值
+						rowMove++;
+					}else{
+						MovedStar movedStar = new MovedStar(star.getPosition(),star.getType(),new Position(star.getPosition().getRow()+rowMove,star.getPosition().getColumn()));
+						starsWaitToMove.add(movedStar );
+					}
+				}
+			}
+		}
 		
 		
-		return null;
+		
+		
+		return starsWaitToMove;
 	}
 	/*****************PRJ-BU2-JAVA-012 Task3 【3/3 End 】*****************/
 
