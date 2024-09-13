@@ -1,5 +1,11 @@
 package cn.campsg.practical.bubble.util;
 
+import cn.campsg.practical.bubble.entity.MovedStar;
+import cn.campsg.practical.bubble.entity.Position;
+import cn.campsg.practical.bubble.entity.Star;
+import cn.campsg.practical.bubble.entity.Star.StarType;
+import cn.campsg.practical.bubble.entity.StarList;
+
 /**
  * 锟斤拷锟斤拷锟斤拷/锟斤拷锟狡讹拷锟斤拷锟斤拷锟斤拷实锟斤拷锟洁工锟斤拷锟洁，锟结供锟斤拷锟铰癸拷锟杰ｏ拷<br>
  * <ul>
